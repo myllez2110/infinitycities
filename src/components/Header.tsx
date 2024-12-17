@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const HeaderContainer = styled.header`
   text-align: center;
   padding: 40px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: black;
   color: white;
   margin-bottom: 40px;
 `;
