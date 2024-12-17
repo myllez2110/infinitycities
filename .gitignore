@@ -1,3 +1,4 @@
+src/config/api.ts
 # Logs
 logs
 *.log
@@ -12,7 +13,8 @@ dist
 dist-ssr
 *.local
 
-config/api.ts
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
