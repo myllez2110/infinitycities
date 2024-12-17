@@ -5,25 +5,33 @@ export const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
-  background: #000;
+  height: 48px;
+  background-color: #000000;
   z-index: 1000;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  justify-content: flex-end;
+  padding: 0 24px;
 `;
 
 export const GithubLink = styled.a`
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 1rem;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.5px;
+  opacity: 0.9;
   transition: opacity 0.2s ease;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 1;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
   }
 `;

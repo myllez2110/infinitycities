@@ -8,8 +8,9 @@ const Header: React.FC = () => (
       href="https://github.com/YourGithubUsername" 
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="GitHub Profile"
     >
-      <Github size={24} />
+      <Github />
       <span>GitHub</span>
     </GithubLink>
   </HeaderContainer>
