@@ -13,7 +13,7 @@ function App() {
 
   const loadMoreCities = useCallback(async () => {
     if (loading) return;
-    
+
     try {
       setLoading(true);
       const newCity = await getRandomCity();
@@ -47,7 +47,7 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
-      <div>
+      <div style={{ paddingTop: '60px' }}>
         {cities.map((city, index) => (
           <div
             key={city.id}
