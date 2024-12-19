@@ -1,8 +1,8 @@
 import React from 'react';
 import { MapPin, Thermometer } from 'lucide-react';
 import { City } from '../../types';
-import { Background } from './Background';
-import { InfoOverlay } from './InfoOverlay';
+import {Background} from './Background';
+import {InfoOverlay} from './InfoOverlay';
 import { CityName, CountryName, WeatherInfo } from './Typography';
 import UnsplashAttribution from '../UnsplashAttribution';
 
