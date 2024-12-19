@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MapPin, Thermometer } from 'lucide-react';
 import { City } from '../types';
+import UnsplashAttribution from './UnsplashAttribution';
 
 const Card = styled.div`
   background: white;
@@ -10,6 +11,7 @@ const Card = styled.div`
   margin: 20px;
   overflow: hidden;
   transition: transform 0.2s;
+  position: relative;
   
   &:hover {
     transform: translateY(-5px);
@@ -66,13 +68,10 @@ const CityCard: React.FC<CityCardProps> = ({ city }) => {
     <Card>
       <ImageContainer>
         <Image 
-          src={city.imageUrl} 
+          src={city.photo.urls.regular} 
           alt={city.name}
-          onError={(e) => {
-            const img = e.target as HTMLImageElement;
-            img.src = `https://source.unsplash.com/800x600/?${encodeURIComponent(city.name)},cityscape`;
-          }}
         />
+        <UnsplashAttribution photo={city.photo} />
       </ImageContainer>
       <Content>
         <CityName>{city.name}, {city.country}</CityName>

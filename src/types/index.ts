@@ -1,10 +1,10 @@
 export interface City {
-  id: string;  // Changed from number to string
+  id: string;
   name: string;
   country: string;
   temp: number;
   weather: string;
-  imageUrl: string;
+  photo: UnsplashPhoto;
   lat: number;
   lon: number;
 }
@@ -23,5 +23,22 @@ export interface WeatherResponse {
   coord: {
     lat: number;
     lon: number;
+  };
+}
+
+export interface UnsplashPhoto {
+  id: string;
+  urls: {
+    regular: string;
+    full: string;
+  };
+  user: {
+    name: string;
+    links: {
+      html: string;
+    };
+  };
+  links: {
+    download_location: string;
   };
 }

@@ -26,7 +26,7 @@ export const getRandomCity = async (): Promise<City> => {
   
   try {
     const weatherData = await getWeatherByCity(cityName);
-    const imageUrl = await getCityImage(weatherData.name, weatherData.sys.country);
+    const photo = await getCityImage(weatherData.name, weatherData.sys.country);
 
     return {
       id: generateId(),
@@ -34,7 +34,7 @@ export const getRandomCity = async (): Promise<City> => {
       country: weatherData.sys.country,
       temp: weatherData.main.temp,
       weather: weatherData.weather[0].main,
-      imageUrl,
+      photo,
       lat: weatherData.coord.lat,
       lon: weatherData.coord.lon
     };

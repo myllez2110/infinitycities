@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_CONFIG } from '../config/api';
+import { UnsplashPhoto } from '../types';
 
 const imageApi = axios.create({
   baseURL: API_CONFIG.UNSPLASH_BASE_URL,
@@ -8,17 +9,61 @@ const imageApi = axios.create({
   }
 });
 
-export const getCityImage = async (cityName: string, country: string): Promise<string> => {
+export const getCityImage = async (cityName: string, country: string): Promise<UnsplashPhoto> => {
   try {
-    const response = await imageApi.get('/photos/random', {
+    const response = await imageApi.get('/search/photos', {
       params: {
-        query: `${cityName}, ${country} cityscape architecture`,
-        orientation: 'landscape',
-        content_filter: 'high'
+        query: `${cityName}, ${country} `,
+        content_filter: 'high',
+        per_page: 5,
       }
     });
-    return response.data.urls.regular;
+
+    if (response.data.results.length > 0) {
+      return response.data.results[0];
+    }
+
+    return {
+      id: 'fallback',
+      urls: {
+        regular: `https://source.unsplash.com/1920x1080/?${encodeURIComponent(`${cityName},${country},cityscape`)}`,
+        full: `https://source.unsplash.com/1920x1080/?${encodeURIComponent(`${cityName},${country},cityscape`)}`
+      },
+      user: {
+        name: 'Unsplash',
+        links: {
+          html: 'https://unsplash.com'
+        }
+      },
+      links: {
+        download_location: ''
+      }
+    };
   } catch (error) {
-    return `https://source.unsplash.com/1920x1080/?${encodeURIComponent(`${cityName},${country},cityscape`)}`;
+    console.error('Error fetching city image:', error);
+    return {
+      id: 'fallback',
+      urls: {
+        regular: `https://source.unsplash.com/1920x1080/?${encodeURIComponent(`${cityName},${country},cityscape`)}`,
+        full: `https://source.unsplash.com/1920x1080/?${encodeURIComponent(`${cityName},${country},cityscape`)}`
+      },
+      user: {
+        name: 'Unsplash',
+        links: {
+          html: 'https://unsplash.com'
+        }
+      },
+      links: {
+        download_location: ''
+      }
+    };
+  }
+};
+
+export const triggerDownload = async (photoId: string): Promise<void> => {
+  try {
+    await imageApi.get(`/photos/${photoId}/download`);
+  } catch (error) {
+    console.error('Error triggering download:', error);
   }
 };

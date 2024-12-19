@@ -4,6 +4,7 @@ import { City } from '../../types';
 import { Background } from './Background';
 import { InfoOverlay } from './InfoOverlay';
 import { CityName, CountryName, WeatherInfo } from './Typography';
+import UnsplashAttribution from '../UnsplashAttribution';
 
 interface CityViewProps {
   city: City;
@@ -11,7 +12,7 @@ interface CityViewProps {
 
 const CityView: React.FC<CityViewProps> = ({ city }) => {
   return (
-    <Background url={city.imageUrl}>
+    <Background url={city.photo.urls.regular}>
       <InfoOverlay>
         <CityName>{city.name}</CityName>
         <CountryName>{city.country}</CountryName>
@@ -26,6 +27,7 @@ const CityView: React.FC<CityViewProps> = ({ city }) => {
           </span>
         </WeatherInfo>
       </InfoOverlay>
+      <UnsplashAttribution photo={city.photo} />
     </Background>
   );
 };
