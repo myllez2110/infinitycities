@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "homepage": "https://myllez2110.github.io/infinitycities/",
     "build": "vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
