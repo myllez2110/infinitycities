@@ -17,7 +17,6 @@ export const getWeatherByCity = async (cityName: string): Promise<WeatherRespons
     });
     return response.data;
   } catch (error) {
-    // Instead of throwing, return a default weather response
     return {
       name: cityName,
       sys: { country: '??' },
