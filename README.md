@@ -1,10 +1,10 @@
 # Infinity Cities
 
 Infinity Cities is a web application designed to generate and explore cities.
-
+(For now, i'm using a pre-defined list of cities with a lot of them, planning to make it search randomly)
 ## Features
 
-- (TODO)        **Procedural City Generation**: Creates unique cities every time the page is loaded.
+- (TODO)        **Procedural City Generation**: Search unique cities every time the page is loaded.
 - **Interactive Visualization**: Allows users to navigate and explore the cities.
 
 ## Technologies Used
