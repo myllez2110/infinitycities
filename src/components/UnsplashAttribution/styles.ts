@@ -12,18 +12,23 @@ export const AttributionContainer = styled.div`
   gap: 16px;
   z-index: 10;
   backdrop-filter: blur(8px);
+
+  @media (max-width: 768px) {
+    top: 24px;
+    bottom: auto;
+  }
 `;
 
 export const AttributionText = styled.div`
   color: white;
   font-size: 14px;
-  
+
   a {
     color: white;
     text-decoration: none;
     opacity: 0.8;
     transition: opacity 0.2s ease;
-    
+
     &:hover {
       opacity: 1;
       text-decoration: underline;
