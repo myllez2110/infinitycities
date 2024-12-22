@@ -21,11 +21,21 @@ const HeaderContainer = styled.header`
 const Title = styled.h1`
   font-size: 1.5rem;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-weight: 300;
+    font-size: 1rem;
+  }
 `;
 
 const SearchContainer = styled.div`
   position: relative;
   flex: 0 1 300px;
+
+  @media (max-width: 768px) {
+    margin-right: 2.5%;
+      flex: 0 1 200px;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -46,6 +56,8 @@ const SearchInput = styled.input`
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
   }
+
+  
 `;
 
 const SearchIcon = styled.button`
