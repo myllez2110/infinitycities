@@ -168,6 +168,7 @@ Error generating stack: `+i.message+`
   @media (max-width: 768px) {
     top: 24px;
     bottom: auto;
+    right: 5px;
   }
 `,hg=ge.div`
   color: white;
