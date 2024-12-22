@@ -23,14 +23,17 @@ const getUnusedCity = (): string => {
 
 export const getRandomCity = async (): Promise<City> => {
   const cityName = getUnusedCity();
-  
+  return getCityData(cityName);
+};
+
+export const getCityData = async (cityName: string): Promise<City> => {
   try {
     const weatherData = await getWeatherByCity(cityName);
     const photo = await getCityImage(weatherData.name, weatherData.sys.country);
 
     return {
       id: generateId(),
-      name: weatherData.name,
+      name: weatherData.name, // Using the official name from the API
       country: weatherData.sys.country,
       temp: weatherData.main.temp,
       weather: weatherData.weather[0].main,

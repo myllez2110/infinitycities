@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { getRandomCity } from './services/api';
+import { getRandomCity, getCityData } from './services/api';
 import CityView from './components/CityView';
 import LoadingSpinner from './components/LoadingSpinner';
 import Header from './components/Header';
@@ -25,6 +25,18 @@ function App() {
     }
   }, [loading]);
 
+  const handleSearch = async (cityName: string) => {
+    try {
+      setLoading(true);
+      const searchedCity = await getCityData(cityName);
+      setCities([searchedCity]); // Reset cities array with the searched city
+    } catch (error) {
+      console.error('Error searching for city:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const { lastElementRef } = useInfiniteScroll(loadMoreCities);
 
   useEffect(() => {
@@ -46,7 +58,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Header />
+      <Header onSearch={handleSearch} />
       <div style={{ paddingTop: '60px' }}>
         {cities.map((city, index) => (
           <div

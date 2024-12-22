@@ -15,14 +15,14 @@ export const getWeatherByCity = async (cityName: string): Promise<WeatherRespons
         units: 'metric'
       }
     });
-    return response.data;
-  } catch (error) {
+
+    // Ensure we use the official name from the API response
     return {
-      name: cityName,
-      sys: { country: '??' },
-      main: { temp: 0 },
-      weather: [{ main: 'Unknown' }],
-      coord: { lat: 0, lon: 0 }
+      ...response.data,
+      name: response.data.name // This will be the official city name from OpenWeather
     };
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    throw new Error('City not found');
   }
 };

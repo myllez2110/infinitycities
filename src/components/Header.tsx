@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaGithub } from 'react-icons/fa';
+import { Search } from 'lucide-react';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -20,6 +21,50 @@ const HeaderContainer = styled.header`
 const Title = styled.h1`
   font-size: 1.5rem;
   margin: 0;
+`;
+
+const SearchContainer = styled.div`
+  position: relative;
+  flex: 0 1 300px;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  padding: 8px 36px 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+`;
+
+const SearchIcon = styled.button`
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: white;
+  }
 `;
 
 const GitButton = styled.a`
@@ -43,13 +88,42 @@ const GitButton = styled.a`
   }
 `;
 
-const Header: React.FC = () => (
-  <HeaderContainer>
-    <Title>Explore Cities Worldwide</Title>
-    <GitButton href="https://github.com/myllez2110" target="_blank" rel="noopener noreferrer">
-      <FaGithub size={16} /> GitHub
-    </GitButton>
-  </HeaderContainer>
-);
+interface HeaderProps {
+  onSearch: (city: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onSearch }) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchValue.trim()) {
+      onSearch(searchValue.trim());
+      setSearchValue('');
+    }
+  };
+
+  return (
+    <HeaderContainer>
+      <Title>Explore Cities Worldwide</Title>
+      <SearchContainer>
+        <form onSubmit={handleSubmit}>
+          <SearchInput
+            type="text"
+            placeholder="Search for a city..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <SearchIcon type="submit">
+            <Search size={16} />
+          </SearchIcon>
+        </form>
+      </SearchContainer>
+      <GitButton href="https://github.com/myllez2110" target="_blank" rel="noopener noreferrer">
+        <FaGithub size={16} /> GitHub
+      </GitButton>
+    </HeaderContainer>
+  );
+};
 
 export default Header;
