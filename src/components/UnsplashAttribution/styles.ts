@@ -16,7 +16,8 @@ export const AttributionContainer = styled.div`
   @media (max-width: 768px) {
     top: 24px;
     bottom: auto;
-    right: 5px;
+    right: 1%;
+    left: 1%;
   }
 `;
 
